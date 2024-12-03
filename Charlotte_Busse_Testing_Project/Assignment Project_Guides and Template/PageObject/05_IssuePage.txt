@@ -1,0 +1,90 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+Documentation	Issue Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+# TODO: Write Precondition and Postcondition, Tags 
+
+Pre Condition	Tips: Project must be created by the user before 
+Post Condition	Issue is deleted
+Tags IssuesPage, TS-4-Issues
+
+#******************* Common Variables ********************
+
+
+*** Variables ***
+IssuesPageUrl= https://gitlab.com/user/project/-/issues
+Title= testissue
+NewTitle = testissue1
+Description= This is a test issue
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Issue creation field variables, Updated name of the issue
+
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Create issue
+		Sign in to GitLab Account
+		Select Projects from side menu
+		Select a project from Projects list
+		Select Issues from side menu
+		Verify Page Shows also Import Issues dropdown listbox
+		Verify Page Shows Jira Integration link
+		Verify Page Shows email a new issue to this project link
+		Click on New Issue button 
+		Input Title  Title
+		Verify that Issue is preselected in Type
+		Input Description   Description
+		Verify Page shows Add Description Templates
+		Verify Page shows This Issue is Confidential checkbox button and Assign to Me link
+		Verify Page shows Assignee dropdown listbox
+		Verify Page shows Calendar to set Due Date
+		Verify Page shows Milestone dropdown listbox
+		Verify Page shows Labels dropdown listbox
+		Click on Create Issue button
+
+
+ 	Update name of issue
+		Select Issues from side menu
+		Select New Issue button
+		Click on Edit button
+		Update Title  NewTitle
+		Click on Save Changes button
+
+	Create second issue with previous updated name
+		Select Issues from side menu
+		Select First Issue
+		Verify Page Shows Message Similar Issues with Help Icon
+		Input  Title  NewTitle
+		Click on Create Issue button
+
+    Delete first issue
+		Select Issues from side menu
+		Select First Issue
+		Go to Issue Actions 3-dots menu
+		Select Delete Issue option
+		Pop-up Window Shows Issue will be removed! Are you sure?
+		Select Delete Issue
+
+
+# Negative Test examples are below write test process steps for each below test case
+	
+	Create an issue with an empty name
+		Select Issues from side menu
+		Select New Issue
+		Input Title Empty
+		Click Create Issue 
+		Error Message should show This field is required
+
+
+

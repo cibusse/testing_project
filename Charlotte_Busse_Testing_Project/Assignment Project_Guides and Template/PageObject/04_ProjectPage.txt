@@ -1,0 +1,112 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+# TODO: Write Dcocumentation e.g. Project Test scenario. CRUD Operation: Create, Read, Update, Delete
+
+Documentation	
+
+# TODO: Write Precondition, Postcondition, Tags
+
+Pre Condition	Sign In 
+Post Condition	Log out
+Tags ProjectPage, TS-3-Project
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+ProjectPageUrl= 
+https://gitlab.com/projects/new
+https://gitlab.com/projects/new#blank_project
+https://gitlab.com/projects/new#create_from_template
+GroupName= testgroup
+ProjectName= testproject
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Project creation field variables
+
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive and Negative Test Cases and Test Process steps
+
+# Positive Test examples are below write test process steps for each below test case
+
+
+	Create or import your first project on Import your First Project window
+		Input GroupName    GroupName
+		Input ProjectName  ProjectName
+		Verify Page Shows Select a Template dropdown menu
+		Verify Page Shows Getting Started README option
+		Click on Create Project 
+		Pop-up Window Shows GitLab is Better with Colleagues 
+		Close Window
+
+	Create blank project
+	    Navigate to Project Page ProjectPage URL
+		Select Create blank project option
+		Input Project_Name   Project_Name
+		Verify Project Slug is Autofilled with ProjectName
+		Select User/Group under Project URL 
+		Verify Page shows Project Deployment Target dropdown menu
+		Select Visibility Level 
+		Verify Initialize Repository with a README checkbox is marked
+		Verify Page shows Experimental Settings option
+		Click on Create Project
+
+	Create template project 
+		Navigate to Project Page ProjectPage URL
+		Click on Create from template 
+		Verify Page shows 33 Built-In templates
+		Verify Each Template has Preview and Use Template buttons
+		Select a Template
+		Verify Window is New Create from Template
+		Verify Page Shows Change Template button
+		Input ProjectName  ProjectName
+		Verify Project Slug is Autofilled with ProjectName
+		Select User/Group from Project URL dropdown menu
+		Verify Page shows Project Description textbox
+		Select a Visibility Level radio button
+		Click on Create Project
+
+	Update name of template project
+		Navigate to New Project Page NewProjectURL
+		Click on More Actions 3-dots menu
+		Click on Project Settings option
+		Update Project_Name   Project_Name
+		Verify Save Changes button appears
+		Click on Save Changes
+
+	Delete template project
+		Navigate to New Project Page NewProjectURL
+		Click on More Actions 3-dots menu
+		Click on Project Settings option
+		Select Advanced option
+		Click on Delete Project
+
+	Valide that message is showing Project 'First project ' was successfully created.
+
+# Negative Test examples are below write test process steps for each below test case
+
+	Create a blank project with the previous same name
+		Navigate to Project Page ProjectPage URL
+		Click on Create blank project
+		Verify fields are filled with previous project's data 
+		Click on Create Project
+		Error Message Should Show Project namespace name has already been taken
+	
+	Create a blank project with empty Project Name
+		Navigate to Project Page ProjectPage URL
+		Click on Create blank project
+		Input Project_Name  Empty
+		Click on Create Project
+		Error Message Should Show Name must start with a letter, digit, emoji, or underscore
+
+
+

@@ -1,0 +1,126 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+# TODO: Write Documentation e.g. User Registration Test scenario with verification, valid and invalid credentials.
+
+Documentation	
+
+# TODO: Write Precondition, Postcondition, Tags
+
+Pre Condition	Open Browser
+Post Condition	Verification successful
+Tags SignUp TS-2-Signup
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+# TODO: Write Registration field variables
+
+SignUp Url = https://gitlab.com/users/sign_up
+FirstName= Charlotte
+LastName= Busse
+UserName= XYZ_Z
+Password= ********
+Email= Charlotte.Busse.Mejia@student.laurea.fi
+Invalid_Username= XYZZZ
+Invalid_Password= ********
+Invalid_Email= Charlotte.Busse.Mejia_student.laurea.fi
+Invalid_Recaptcha
+Without_Recaptcha
+Empty=  
+Verification_Code=******
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive and Negative Test Cases and Test Process steps (Think about possible test cases)
+
+# Positive Test examples are below write test process steps for each below test case
+
+	Register user with valid username and password 
+		Navigate To SignUp Page  SignUpUrl
+		Input FirstName  FirstName
+		Input LastName  LastName
+		Input UserName  UserName
+		Verify UserName is Available
+		Input Email  Email
+		Input Password  Password
+		Input Recaptcha Recaptcha
+		Verify GitLab Can Contact checkbox is selected	
+		Verify Page Shows Link to Terms of Use
+		Verify Page Should Contain Login with Google	  
+		Verify Page Should Contain Login with GitHub
+		Verify Page Should Contain Login with Bitbucket
+		Verify Page Should Contain Login with Salesforce		
+		Verify Page Should Contain Link to Sign In
+		Click on Continue
+		Verify Next Window is Help Us Keep GitLab Secure
+		Verify Verification_Code Was Sent to Email
+		Input Verification_Code Verification_Code
+		Click on Verify Email Address
+		Verify Next Window Shows Confirmation
+		Click on Next 
+		Verify Next Window is Welcome to GitLab
+		Select Role from dropdown menu
+		Select Option from Im Signing Up For GitLab Because dropdown menu
+		Select Create a New Project radio button
+		Select Just Me radio button
+		Click on Continue
+		Verify Next Window is Verification successful
+
+
+# Negative Test examples keywords are below write test process steps for each below test case 
+
+	Error message Should Be Visible After Invalid Sign Up With Empty Fields
+		Navigate To SignUp Page  SignUpUrl
+		Input FirstName  Empty
+		Input LastName  Empty
+		Input UserName  Empty
+		Input Email  Empty
+		Input Password  Empty
+		Input Recaptcha Empty
+		Submit Sign Up Form
+		Verify That Error message should show This field is required
+		Verify That Error message should show This field is required
+		Verify That Error message should show Please create a username with only alphanumeric characters
+		Verify That Error message should show Please provide a valid email address
+		Verify That Error message should show Minimum length is 8 characters
+		Verify That Error message should show Complete verification to sign up
+
+	Error message Should Be Visible After Invalid Sign Up With Invalid UserName and Email
+		Navigate To SignUp Page  SignUpUrl
+		Input FirstName  FirstName
+		Input LastName  LastName
+		Input UserName  Invalid_Username
+		Input Email  Invalid_Email
+		Input Password  Password
+		Input Recaptcha Recaptcha
+		Submit Sign Up Form
+		Verify That Error message should show Username is too short (minimum is 2 characters).
+		Verify That Error message should show Please provide a valid email address.
+
+	Error message Should Be Visible After Invalid Sign Up With Invalid Recaptcha
+		Navigate To SignUp Page  SignUpUrl
+		Input FirstName  FirstName
+		Input LastName  LastName
+		Input UserName  UserName
+		Input Email  Email
+		Input Password  Password
+		Input Recaptcha Invalid_Recaptcha
+		Submit Sign Up Form
+		Verify That Error message should show Try again
+
+
+
+
+
+
+
+
